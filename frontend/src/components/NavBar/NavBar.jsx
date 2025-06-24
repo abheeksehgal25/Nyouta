@@ -9,8 +9,9 @@ const NavBar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [touchDevice, setTouchDevice] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); 
   const [profileOpen, setProfileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
 
   const dropdownItems = {
     invitation: [
@@ -59,20 +60,34 @@ const NavBar = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 769);
+      if (window.innerWidth >= 769) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleMenuToggle = (menu) => {
-    setOpenDropdown(openDropdown === menu ? null : menu);
+    if (isMobile) {
+      setOpenDropdown(openDropdown === menu ? null : menu);
+    } else {
+      setOpenDropdown(openDropdown === menu ? null : menu);
+    }
   };
 
   const handleMouseEnter = (menu) => {
-    if (!touchDevice) {
+    if (!touchDevice && !isMobile) {
       setOpenDropdown(menu);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!touchDevice) {
+    if (!touchDevice && !isMobile) {
       setOpenDropdown(null);
     }
   };
@@ -89,12 +104,17 @@ const NavBar = () => {
     setProfileOpen(!profileOpen);
   };
 
+  const closeAllMenus = () => {
+    setOpenDropdown(null);
+    setProfileOpen(false);
+  };
+
   const renderDropdown = (menuKey) => (
     openDropdown === menuKey && (
       <div 
         className={`dropdown-menu ${openDropdown === menuKey ? 'active' : ''}`}
-        onMouseEnter={() => !touchDevice && setOpenDropdown(menuKey)}
-        onMouseLeave={() => !touchDevice && setOpenDropdown(null)}
+        onMouseEnter={() => !touchDevice && !isMobile && setOpenDropdown(menuKey)}
+        onMouseLeave={() => !touchDevice && !isMobile && setOpenDropdown(null)}
       >
         {dropdownItems[menuKey].map((item, index) => (
           <a 
@@ -105,6 +125,7 @@ const NavBar = () => {
               if (item.path !== '#') {
                 e.preventDefault();
                 navigate(item.path);
+                closeAllMenus();
               }
             }}
           >
@@ -118,15 +139,24 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={LOGO} alt="Nyouta Logo" />
+        <img src={LOGO} alt="Nyouta Logo" onClick={() => navigate('/')} style={{cursor: 'pointer'}} />
       </div>
 
       <button
-        className="navbar-toggle"
-        onClick={() => setMenuOpen(!menuOpen)}
+        className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
+        onClick={() => {
+          setMenuOpen(!menuOpen);
+          if (menuOpen) {
+            setOpenDropdown(null);
+            setProfileOpen(false);
+          }
+        }}
         aria-label="Toggle menu"
+        aria-expanded={menuOpen}
       >
-        ☰
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
+        <span className="burger-line"></span>
       </button>
 
       <div className={`navbar-links ${menuOpen ? 'active' : ''}`}>
@@ -148,28 +178,34 @@ const NavBar = () => {
             {renderDropdown(key)}
           </div>
         ))}
-      </div>
 
-      <div className={`navbar-auth ${menuOpen ? 'active' : ''}`}>
-        {user ? (
-          <div className="user-profile">
-            <button className="welcome-btn" onClick={toggleProfile}>
-              Welcome {user.name}
-            </button>
-            {profileOpen && (
-              <UserProfilePopup 
-                user={user} 
-                onClose={() => setProfileOpen(false)} 
-                onLogout={handleLogout} 
-              />
-            )}
-          </div>
-        ) : (
-          <>
-            <button className="login-btn" onClick={() => navigate('/login')}>LOGIN</button>
-            <button className="signup-btn" onClick={() => navigate('/signup')}>SIGNUP</button>
-          </>
-        )}
+        <div className="navbar-auth">
+          {user ? (
+            <div className="user-profile">
+              <button className="welcome-btn" onClick={toggleProfile}>
+                Welcome {user.name}
+              </button>
+              {profileOpen && (
+                <UserProfilePopup 
+                  user={user} 
+                  onClose={() => setProfileOpen(false)} 
+                  onLogout={handleLogout} 
+                />
+              )}
+            </div>
+          ) : (
+            <>
+              <button className="login-btn" onClick={() => {
+                navigate('/login');
+                setMenuOpen(false);
+              }}>LOGIN</button>
+              <button className="signup-btn" onClick={() => {
+                navigate('/signup');
+                setMenuOpen(false);
+              }}>SIGNUP</button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
