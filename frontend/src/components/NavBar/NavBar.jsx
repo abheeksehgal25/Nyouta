@@ -43,7 +43,8 @@ const NavBar = () => {
     wedding: [
       { name: 'Templates', path: '#' },
       { name: 'RSVP Management', path: '#' },
-      { name: 'Guest List', path: '#' }
+      { name: 'Guest List', path: '#' },
+      { name: 'Wedding Page', path: '/wedding-page' }
     ]
   };
 

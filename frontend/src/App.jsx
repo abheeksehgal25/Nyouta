@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import OtpVerification from './pages/OtpVerification';
 import AddProduct from './pages/productpage/AddProduct';
+import WeddingPage from './pages/weddingPage/WeddingPage';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/otp-verification' element={<OtpVerification/>}/>
+        <Route path='/wedding-page' element={<WeddingPage/>}/>
       </Routes>
       <Footer/>
     </div>
