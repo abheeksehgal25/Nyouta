@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react"
 
+import weddingImage from '../assets/wedding_management.png'
+import planningImage from '../assets/planning.png';
+import notepadImage from '../assets/notepad.png';
+
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
@@ -12,7 +16,7 @@ const HeroSection = () => {
     "/a1.jpg",
     "/a2.jpg?height=400&width=1200",
     "/a3.jpg?height=400&width=1200",
-    "/a4.svg?height=400&width=1200",
+    weddingImage,
   ]
 
   // Auto-play functionality

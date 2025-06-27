@@ -1,5 +1,15 @@
 "use client"
 
+
+import pooja from '../components/cardsImage/pooja.jpg'
+import partyInvitation from '../components/cardsImage/partyinvitation.png'
+import weddingCalendar from '../components/cardsImage/weddingCalendar.png'
+import weddingInvitaion from '../components/cardsImage/weddingInvitation.png'
+import weddingItenary from '../components/cardsImage/weddingItenary.png'
+import weddingSticker from '../components/cardsImage/weddingSticker.png'
+import weddingGame from '../components/cardsImage/weddingGame.jpg'
+import ceremonyInvitation from '../components/cardsImage/ceremonyInvitation.jpg'
+
 const Cards = () => {
   const handleNavigation = (category) => {
     console.log(`Navigating to: ${category}`)
@@ -8,15 +18,15 @@ const Cards = () => {
 
   const cardCategories = [
     // Top row
-    { id: 1, title: "Wedding Invitations", route: "/wedding-invitations" },
-    { id: 2, title: "Party Invitations", route: "/party-invitations" },
-    { id: 3, title: "Wedding Itinerary", route: "/wedding-itinerary" },
-    { id: 4, title: "Tags & Stickers", route: "/tags-stickers" },
+    { id: 1, title: "Wedding Invitations", route: "/wedding-invitations", thumbnail: weddingInvitaion },
+    { id: 2, title: "Party Invitations", route: "/party-invitations", thumbnail:  partyInvitation},
+    { id: 3, title: "Wedding Itinerary", route: "/wedding-itinerary", thumbnail: weddingItenary },
+    { id: 4, title: "Tags & Stickers", route: "/tags-stickers", thumbnail: weddingSticker },
     // Bottom row
-    { id: 5, title: "Pooja Invitations", route: "/pooja-invitations" },
-    { id: 6, title: "Ceremony Invitations", route: "/ceremony-invitations" },
-    { id: 7, title: "Wedding Calendars", route: "/wedding-calendars" },
-    { id: 8, title: "Wedding Games", route: "/wedding-games" },
+    { id: 5, title: "Pooja Invitations", route: "/pooja-invitations", thumbnail: pooja },
+    { id: 6, title: "Ceremony Invitations", route: "/ceremony-invitations", thumbnail:  ceremonyInvitation},
+    { id: 7, title: "Wedding Calendars", route: "/wedding-calendars", thumbnail: weddingCalendar },
+    { id: 8, title: "Wedding Games", route: "/wedding-games", thumbnail: weddingGame },
   ]
 
   const handleShopNow = () => {
@@ -33,13 +43,20 @@ const Cards = () => {
               key={card.id}
               onClick={() => handleNavigation(card.title)}
               className="flex flex-col items-center cursor-pointer group transition-transform duration-200 hover:scale-105"
-            >
+              >
               {/* Perfect Arch-shaped Card */}
-              <div className="w-32 h-40 md:w-40 md:h-48 lg:w-44 lg:h-52 mb-6 relative">
+              <div className="w-32 h-40 md:w-40 md:h-48 lg:w-44 lg:h-52 mb-6 relative"
+              >
                 <div
                   className="w-full h-full bg-white shadow-md group-hover:shadow-lg transition-shadow duration-200"
-                  style={{
-                    borderRadius: "50% 50% 0 0",
+                  // style={{
+                    // borderRadius: "50% 50% 0 0",
+                    // }}
+                    style={{
+                      backgroundImage: `url(${card.thumbnail})`,
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                      borderRadius: "42% 42% 0 0",
                   }}
                 />
               </div>
@@ -80,7 +97,10 @@ const Cards = () => {
                 <div
                   className="w-full h-full bg-white shadow-md group-hover:shadow-lg transition-shadow duration-200"
                   style={{
-                    borderRadius: "50% 50% 0 0",
+                      backgroundImage: `url(${card.thumbnail})`,
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                      borderRadius: "42% 42% 0 0",
                   }}
                 />
               </div>

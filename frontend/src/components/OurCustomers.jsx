@@ -44,37 +44,33 @@ const OurCustomers = () => {
   const inspirationCards = [
     {
       id: 1,
-      title: "Ideas and Inspiration",
-      description:
-        "Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration",
+      title: "Wedding Management",
+      description: "Plan, organize, and manage your entire wedding with ease and elegance.",
       image: "/placeholder.svg?height=200&width=200",
       link: "/inspiration-1",
     },
     {
       id: 2,
-      title: "Ideas and Inspiration",
-      description:
-        "Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration",
+      title: "Planner Books",
+      description: "Stylish planners to track tasks, budgets, schedules, and wedding details effortlessly.",
       image: "/placeholder.svg?height=200&width=200",
       link: "/inspiration-2",
     },
     {
       id: 3,
-      title: "Ideas and Inspiration",
-      description:
-        "Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration",
+      title: "Guest List Book",
+      description: "Keep guest names, RSVPs, gifts, and seating plans organized and accessible.",
       image: "/placeholder.svg?height=200&width=200",
       link: "/inspiration-3",
     },
     {
       id: 4,
-      title: "Ideas and Inspiration",
-      description:
-        "Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration Ideas and Inspiration",
+      title: "Free Printables",
+      description: "Download decor signs, checklists, and templates to simplify your celebration planning.",
       image: "/placeholder.svg?height=200&width=200",
       link: "/inspiration-4",
     },
-  ]
+  ];
 
   const handleTestimonialClick = (testimonialId) => {
     console.log(`Testimonial ${testimonialId} clicked`)

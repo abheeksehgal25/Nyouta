@@ -6,9 +6,14 @@ import OurTrending from '../components/OurTranding'
 import Memories from '../components/Memories'
 import WeddingJourney from '../components/WeddingJourney'
 import OurCustomers from '../components/OurCustomers'
+import GetAllProducts from '../hooks/GetAllProducts'
 // import PromiseCard from '../components/PromiseCard'
 
 const Home = () => {
+
+  GetAllProducts();
+  
+  
   return (
     <div>
       <HeroSection />
@@ -17,7 +22,7 @@ const Home = () => {
       <OurTrending />
       <Memories/>
       <WeddingJourney/>
-      <OurCustomers/>
+      {/* <OurCustomers/> */}
       {/* <PromiseCard/> */}
     </div>
   )

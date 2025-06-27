@@ -1,34 +1,44 @@
 "use client"
 
 import { Play } from "lucide-react"
+import { useNavigate } from 'react-router-dom'
+
+import weddingImage from '../assets/wedding_management.png'
+import planningImage from '../assets/planning.png';
+import notepadImage from '../assets/notepad.png';
 
 const Memories = () => {
+
+  const navigate = useNavigate();
+
   const memoryCards = [
     {
       id: 1,
       title: "Wedding Memories",
-      videoUrl: "/placeholder-video-1.mp4",
-      thumbnail: "/placeholder.svg?height=300&width=400",
+      videoUrl: "https://www.youtube.com/watch?v=XsSEBVuF34E",
+      thumbnail: weddingImage,
     },
     {
       id: 2,
       title: "Event Highlights",
-      videoUrl: "/placeholder-video-2.mp4",
-      thumbnail: "/placeholder.svg?height=300&width=400",
+      videoUrl: "https://www.youtube.com/watch?v=XsSEBVuF34E",
+      thumbnail: planningImage,
     },
     {
       id: 3,
       title: "Special Moments",
-      videoUrl: "/placeholder-video-3.mp4",
-      thumbnail: "/placeholder.svg?height=300&width=400",
+      videoUrl: "https://www.youtube.com/watch?v=Za0ghsTnYWI",
+      thumbnail: notepadImage,
     },
   ]
 
   const handlePlayVideo = (cardId) => {
-    console.log(`Playing video for card ${cardId}`)
-    // Add your video play logic here
-    // For example: open modal with video player, navigate to video page, etc.
-  }
+    const video = memoryCards.find((card) => card.id === cardId);
+    if (video) {
+      window.open(video.videoUrl, '_blank');
+    }
+  };
+
 
   const handleShopNow = (cardId) => {
     console.log(`Shop Now clicked for card ${cardId}`)
@@ -57,16 +67,24 @@ const Memories = () => {
               <div
                 onClick={() => handlePlayVideo(card.id)}
                 className="w-full max-w-sm h-64 md:h-72 bg-white rounded-2xl shadow-lg cursor-pointer group transition-transform duration-200 hover:scale-105 flex items-center justify-center mb-6"
+                style={{
+                  backgroundImage: `url(${card.thumbnail})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                }}
               >
+
                 {/* Play Button */}
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors duration-200 shadow-lg">
+                <div
+
+                  className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors duration-200 shadow-lg">
                   <Play className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="currentColor" />
                 </div>
               </div>
 
               {/* Shop Now Button */}
               <button
-                onClick={() => handleShopNow(card.id)}
+                onClick={() => navigate('/books')}
                 className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 SHOP NOW

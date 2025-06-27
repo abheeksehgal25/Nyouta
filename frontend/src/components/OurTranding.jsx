@@ -1,6 +1,7 @@
 "use client"
 
 import { Instagram } from "lucide-react"
+import { useSelector } from "react-redux"
 
 const OurTrending = () => {
   const trendingItems = [
@@ -11,6 +12,8 @@ const OurTrending = () => {
     { id: 5, title: "Trending Item 5", image: "/placeholder.svg?height=200&width=200" },
     { id: 6, title: "Trending Item 6", image: "/placeholder.svg?height=200&width=200" },
   ]
+
+  const { allProducts } = useSelector(store => store.product)
 
   const handleCardClick = (itemId) => {
     console.log(`Navigating to trending item ${itemId}`)
@@ -35,17 +38,19 @@ const OurTrending = () => {
 
         {/* Trending Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 md:gap-6 mb-12">
-          {trendingItems.map((item) => (
+          {allProducts?.slice(0, 6)?.map((item) => (
             <div
-              key={item.id}
-              onClick={() => handleCardClick(item.id)}
-              className="aspect-square rounded-lg border-2 border-pink-200 bg-white shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer p-2 flex items-center justify-center"
+              key={item._id}
+              onClick={() => handleCardClick(item?._id)}
+              className="aspect-square rounded-lg border-2 border-pink-200 bg-white shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer p-0.5 flex items-center justify-center"
             >
+              {console.log(item)}
               <img
-                src={item.image || "/placeholder.svg"}
+                src={item.image[0]}
                 alt={item.title}
-                className="w-full h-full object-cover rounded opacity-0"
+                className="w-full h-full object-cover rounded"
               />
+
             </div>
           ))}
         </div>
@@ -55,7 +60,7 @@ const OurTrending = () => {
           <h3 className="text-xl font-semibold text-amber-800 mb-4">Follow us on</h3>
           <div className="flex justify-center">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/enyouta.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-tr from-yellow-500 via-pink-600 to-purple-700 p-1 rounded-full"
