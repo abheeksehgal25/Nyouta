@@ -1,6 +1,7 @@
 // AiPoweredSection.jsx
 import React from 'react';
 import './AiPoweredSection.css';
+import RecentCouples from '../recentCouples/RecentCouples';
 
 const AiPoweredSection = () => {
   const features = [
@@ -36,6 +37,10 @@ const AiPoweredSection = () => {
 
           <button className="ai-button">SETUP YOUR WEBSITE</button>
         </div>
+      </div>
+
+      <div className="recent-couples">
+        <RecentCouples/>
       </div>
     </div>
   );

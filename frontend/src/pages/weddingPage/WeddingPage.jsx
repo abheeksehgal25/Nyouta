@@ -5,6 +5,7 @@ import WeddingDesigns from './components/weddingDesigns/WeddingDesigns'
 import WeddingFeatures from './components/weddingFeatures/WeddingFeatures'
 import PlanningFeatures from './components/planningFeatures/PlanningFeatures'
 import AiPoweredSection from './components/AiPoweredSection/AiPoweredSection'
+import FAQSection from './components/faq-section/FAQSection'
 
 function WeddingPage() {
     return (
@@ -44,6 +45,10 @@ function WeddingPage() {
 
             <div className="ai-powered-section">
                 <AiPoweredSection/>
+            </div>
+
+            <div className="faqSection">
+                <FAQSection/>
             </div>
         </div>
     )
